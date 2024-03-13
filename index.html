@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body{
+        text-align: center;
+        
+      }
+    input{
+      width: 4%;
+      height: 2vh;
+    }
+    h1{
+      height: 4rem
+    }
+    #note1{
+      position: relative;
+      top: 14vh;
+      color: aliceblue;
+      font-size: 1.2rem;
+    }
+    
+    #note2{
+      position:relative;
+      top: 18vh;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: aliceblue;
+    }
+    #containerCalcul{
+      background-image: url(https://img.freepik.com/photos-premium/cadre-bois-tableau-noir-calculs_23-2147849666.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 38vh;
+        
+       
+    }
+    ol{
+      margin-top: 8vh;
+      margin-left: 35%;
+    
+    }
+    li{
+      list-style: none;
+      font-size: 1.5rem;
+      font-weight: 500;
+      width: 40%;
+    }
+    @media screen and (max-width: 500px) {
+      #containerCalcul{
+        height: 50vh; 
+      }
+      #note1{
+        top: 20vh;
+      }
+      #note2{
+        top: 22vh;
+      }
+     ol > li{
+        white-space: nowrap;
+        margin-left: -58%;
+      }
+      input{
+        width: 14%;
+      }
+    }
+  </style>
+  <title>calculateur_de_moyenne</title>
+</head>
+<body>
+  <h1>Calculateur de Moyenne</h1>
+  <div id="containerCalcul">
+    <div id="note1">
+    <label for="enterMoyenne">Entrer une moyenne</label></br>
+    <input id="noteObtenueEntrer" type="number">
+    /
+    <input id="surNoteAConvertir" type="number">
+    </div>
+    <div id="note2">
+    <label for="sortieMoyenne">Votre moyenne convertie :</label></br>
+    <input id="noteObtenueSortie" type="number">
+     /20
+     <i id="download" class="fa-solid fa-download"></i>
+    </div>
+  </div>
+  
+   <div >
+    <ol id="containerScore">
+    </ol>
+   </div>
+  <script>
+    var noteObtenueEntrerValue;
+    var surNoteAConvertirValue; 
+    var resultat;
+    var numero = 1;
+  noteObtenueEntrer.addEventListener("change", ()=>{
+    noteObtenueEntrerValue = noteObtenueEntrer.value;
+    resultat = noteObtenueEntrerValue/surNoteAConvertirValue*20;
+    noteObtenueSortie.value = resultat.toFixed(2);
+  });
+  surNoteAConvertir.addEventListener("change", ()=>{
+    surNoteAConvertirValue = surNoteAConvertir.value;
+    resultat = noteObtenueEntrerValue/surNoteAConvertirValue*20;
+    noteObtenueSortie.value = resultat.toFixed(2);
+  });
+  download.addEventListener("click", ()=>{
+    
+    
+    let elementCreat = document.createElement("li");
+    elementCreat.setAttribute("onclick", "eraseNote();")
+    
+    elementCreat.innerHTML = "Eleve " + numero +" a la note de "+ noteObtenueSortie.value + " / 20"
+    
+    numero++;
+    
+    // Ajoutez l'élément texte et le bouton au conteneur
+    containerScore.appendChild(elementCreat);
+   
+
+    // Ajoutez le conteneur au conteneur principal
+    
+  });
+  function eraseNote(){
+    
+  }
+  function getNumeroLigne() {
+        var liste = document.getElementById("containerScore");
+        var items = liste.getElementsByTagName("li");
+
+        for (var i = 0; i < items.length; i++) {
+            var numero = items[i].value; // Obtenez le numéro de ligne
+            
+        }
+    }
+  
+  </script>
+</body>
+</html>
